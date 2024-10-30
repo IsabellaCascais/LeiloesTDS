@@ -71,5 +71,14 @@ public class ProdutosDAO {
         }
 
     }
+    
+    public void venderProduto(int idProduto) throws SQLException {
+        
+        st = conn.prepareStatement("UPDATE produtos SET status = ? WHERE id = ?");
+        st.setString(1, "Vendido");
+        st.setInt(2, idProduto);
+        
+        st.execute();
+    }
 
 }
