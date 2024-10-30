@@ -49,7 +49,6 @@ public class ProdutosDAO {
             st = conn.prepareStatement("SELECT id, nome, valor, status FROM produtos");
             resultset = st.executeQuery();
             
-            ArrayList<ProdutosDTO> listagem = new ArrayList<>();
             ProdutosDTO produtos = new ProdutosDTO();
             
             while (resultset.next()) {
@@ -84,7 +83,6 @@ public class ProdutosDAO {
             st = conn.prepareStatement("SELECT id, nome, valor, status FROM produtos WHERE status = 'Vendido'");
             resultset = st.executeQuery();
             
-            ArrayList<ProdutosDTO> listagem = new ArrayList<>();
             ProdutosDTO produtos = new ProdutosDTO();
             
             while (resultset.next()) {
