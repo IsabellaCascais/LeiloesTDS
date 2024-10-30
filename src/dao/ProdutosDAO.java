@@ -45,12 +45,12 @@ public class ProdutosDAO {
     public ArrayList<ProdutosDTO> listarProdutos() {
 
         try {
-            
+
             st = conn.prepareStatement("SELECT id, nome, valor, status FROM produtos");
             resultset = st.executeQuery();
-            
+
             ProdutosDTO produtos = new ProdutosDTO();
-            
+
             while (resultset.next()) {
                 produtos.setId(resultset.getInt("id"));
                 produtos.setNome(resultset.getString("nome"));
@@ -58,7 +58,7 @@ public class ProdutosDAO {
                 produtos.setStatus(resultset.getString("status"));
                 listagem.add(new ProdutosDTO(produtos));
             }
-            
+
             return listagem;
         } catch (Exception ex) {
             System.out.println("Erro ao conectar: " + ex.getMessage());
@@ -66,25 +66,30 @@ public class ProdutosDAO {
         }
 
     }
-    
+
     public void venderProduto(int idProduto) throws SQLException {
-        
-        st = conn.prepareStatement("UPDATE produtos SET status = ? WHERE id = ?");
-        st.setString(1, "Vendido");
-        st.setInt(2, idProduto);
-        
-        st.execute();
+
+        try {
+            st = conn.prepareStatement("UPDATE produtos SET status = ? WHERE id = ?");
+            st.setString(1, "Vendido");
+            st.setInt(2, idProduto);
+
+            st.execute();
+        } catch (Exception ex) {
+            System.out.println("Erro ao conectar: " + ex.getMessage());
+
+        }
     }
-    
+
     public ArrayList<ProdutosDTO> listarProdutosVendidos() {
 
         try {
-            
+
             st = conn.prepareStatement("SELECT id, nome, valor, status FROM produtos WHERE status = 'Vendido'");
             resultset = st.executeQuery();
-            
+
             ProdutosDTO produtos = new ProdutosDTO();
-            
+
             while (resultset.next()) {
                 produtos.setId(resultset.getInt("id"));
                 produtos.setNome(resultset.getString("nome"));
@@ -92,7 +97,7 @@ public class ProdutosDAO {
                 produtos.setStatus(resultset.getString("status"));
                 listagem.add(new ProdutosDTO(produtos));
             }
-            
+
             return listagem;
         } catch (Exception ex) {
             System.out.println("Erro ao conectar: " + ex.getMessage());
