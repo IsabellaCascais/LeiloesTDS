@@ -1,9 +1,10 @@
-
 package view;
 
 import dao.ProdutosDAO;
 import dto.ProdutosDTO;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -29,12 +30,12 @@ public class vendasVIEW extends javax.swing.JFrame {
                     listagem.get(i).getStatus()
                 });
             }
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            Logger.getLogger(vendasVIEW.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
-    
-    
+
     /**
      * Creates new form vendasVIEW
      */
